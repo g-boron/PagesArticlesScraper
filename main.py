@@ -4,6 +4,7 @@ from collections import Counter
 
 import requests
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
 
 
 def read_input_json(name):
@@ -93,7 +94,17 @@ if __name__ == "__main__":
 
   words_counts = sort_dictionary(words_count)
   for category, words in words_count.items():
-    print(f"Category: {category}")
+    words_list = []
+    amounts = []
     for word, amount in words.items():
       if amount > 2:
         print(f"{word} - {amount}")
+        words_list.append(word)
+        amounts.append(amount)
+    fig, ax = plt.subplots(figsize=(12, 6))
+    bars = ax.bar(words_list, amounts)
+    ax.bar_label(bars)
+    plt.title(f"Category: {category}")
+    plt.ylabel("Words amount")
+    plt.xlabel("Word")
+    plt.show()
