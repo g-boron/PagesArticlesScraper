@@ -1,0 +1,22 @@
+{
+  "pages": [
+    {
+      "url": "https://www.donald.pl/news",
+      "tag": "a",
+      "class": "sc-1uxgugq-3 fvikJc",
+      "categories": ["News"]
+    },
+    {
+      "url": "https://businessinsider.com.pl/technologie",
+      "tag": "h2",
+      "class": "item_title",
+      "categories": ["News", "IT"]
+    },
+    {
+      "url": "https://www.national-geographic.pl/nauka/",
+      "tag": "h2",
+      "class": "heading-4",
+      "categories": ["Science"]
+    }
+  ]
+}
