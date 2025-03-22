@@ -121,15 +121,26 @@ def process_pages(pages_data):
   return words_data, titles_amount
 
 
+def split_pages_data(input_data):
+  splitter = len(input_data) // 4
+  part1 = data[:splitter]
+  part2 = data[splitter:2 * splitter]
+  part3 = data[2 * splitter:3 * splitter]
+  part4 = data[3 * splitter:]
+  return [part1, part2, part3, part4]
+
+
 if __name__ == "__main__":
   data = read_input_json("input.json")
   print(f"Pages to scrape: {len(data)}")
-  half_data = len(data) // 2
+  prepared_data = split_pages_data(data)
   start = perf_counter()
-  with ThreadPoolExecutor(max_workers=2) as executor:
+  with ThreadPoolExecutor(max_workers=4) as executor:
     futures = [
-      executor.submit(process_pages, data[half_data:]),
-      executor.submit(process_pages, data[:half_data])
+      executor.submit(process_pages, prepared_data[0]),
+      executor.submit(process_pages, prepared_data[1]),
+      executor.submit(process_pages, prepared_data[2]),
+      executor.submit(process_pages, prepared_data[3])
     ]
     words_count = {}
     titles_count = 0
