@@ -1,9 +1,11 @@
 """ Main module """
 import json
 from collections import Counter
+from itertools import islice
 
 import requests
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
 
 
 def read_input_json(name):
@@ -62,38 +64,60 @@ def sort_dictionary(final_counts: dict) -> dict:
 
   :param final_counts: Dictionary that stores all results.
 
-  :returns: Dictionary with sorted words amount.
+  :returns: Dictionary with sorted words amount. Top 10 words count.
   """
   for k in final_counts:
     final_counts[k] = dict(
       sorted(final_counts[k].items(), key=lambda item: item[1], reverse=True)
     )
-  return final_counts
+  return {
+    key: dict(islice(value.items(), 10))
+    for key, value in final_counts.items()
+  }
+
+
+def display_charts(final_counts):
+  for category, words in final_counts.items():
+    words_list = []
+    amounts = []
+    for word, amount in words.items():
+      words_list.append(word)
+      amounts.append(amount)
+    fig, ax = plt.subplots(figsize=(12, 6))
+    bars = ax.bar(words_list, amounts)
+    ax.bar_label(bars)
+    plt.title(
+      f"Amount of words in category {category} with more than 2 occurrences.",
+      fontsize=20
+    )
+    plt.ylabel("Words amount", fontsize=15)
+    plt.xlabel("Word", fontsize=15)
+    plt.show()
 
 
 if __name__ == "__main__":
   data = read_input_json("input.json")
   words_count = {}
+  titles_count = 0
+  print(f"Pages to scrape: {len(data)}")
   for page_data in data:
     url = page_data["url"]
     categories = page_data["categories"]
+    print("First three titles for every URL.")
     print(f"====== {url} - {categories} ======")
     html_tag = page_data["tag"]
     html_class = page_data["class"]
     titles = get_page_titles(url, html_tag, html_class)
+    print(f"Found {len(titles)} titles.")
     print(titles[:3])
+    titles_count += len(titles)
     words_amount = count_words(titles)
-    print(words_amount)
     print("============")
     words_amount_with_categories = {
         category: words_amount
         for category in categories
     }
     words_count = join_words_amount(words_count, words_amount_with_categories)
-
+  print(f"Found total {titles_count} titles.")
   words_counts = sort_dictionary(words_count)
-  for category, words in words_count.items():
-    print(f"Category: {category}")
-    for word, amount in words.items():
-      if amount > 2:
-        print(f"{word} - {amount}")
+  display_charts(words_counts)

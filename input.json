@@ -17,6 +17,138 @@
       "tag": "h2",
       "class": "heading-4",
       "categories": ["Science"]
+    },
+    {
+      "url": "https://www.onet.pl/sport",
+      "tag": "h3",
+      "class": "TitleWrapper_titleWrapper__7S_PA Common_standardCardTitle__Xodz6 Common_standardCardTitleDefault__rkwjy TitleWrapper_colorDefault__Vvm_G",
+      "categories": ["Sport", "News"]
+    },
+    {
+      "url": "https://www.pudelek.pl/",
+      "tag": "a",
+      "class": "sc-gVLVqr hRExMg sc-kcDeIU eNzLho",
+      "categories": ["Gossip"]
+    },
+    {
+      "url": "https://www.pudelek.pl/",
+      "tag": "a",
+      "class": "sc-gVLVqr hRExMg sc-kcDeIU eNzLho",
+      "categories": ["Gossip"]
+    },
+    {
+      "url": "https://dzienniknaukowy.pl/aktualnosci",
+      "tag": "h3",
+      "class": "elementor-heading-title elementor-size-default",
+      "categories": ["News", "Science"]
+    },
+    {
+      "url": "https://www.rp.pl/wydarzenia/nauka",
+      "tag": "h2",
+      "class": "t--60",
+      "categories": ["News", "Science"]
+    },
+    {
+      "url": "https://www.computerworld.pl/markets/",
+      "tag": "h3",
+      "class": "card__title",
+      "categories": ["IT"]
+    },
+    {
+      "url": "https://ludzie.fakt.pl/",
+      "tag": "h2",
+      "class": "list-item-title",
+      "categories": ["Gossip"]
+    },
+    {
+      "url": "https://www.autocentrum.pl/newsy/informacje-prasowe/",
+      "tag": "h2",
+      "class": "article-title",
+      "categories": ["News", "Cars"]
+    },
+    {
+      "url": "https://moto.rp.pl/motoryzacja/tu-i-teraz",
+      "tag": "h2",
+      "class": "t--60",
+      "categories": ["News", "Cars"]
+    },
+    {
+      "url": "https://www.forbes.pl/technologie",
+      "tag": "h2",
+      "class": "artTitle",
+      "categories": ["IT"]
+    },
+    {
+      "url": "https://www.itweek.pl/kategoria/tech/",
+      "tag": "a",
+      "class": "p-url",
+      "categories": ["IT"]
+    },
+    {
+      "url": "https://www.auto-swiat.pl/wiadomosci",
+      "tag": "h3",
+      "class": "ods-c-card__title",
+      "categories": ["Cars"]
+    },
+    {
+      "url": "https://www.flashscore.pl/wiadomosci/",
+      "tag": "h6",
+      "class": "wcl-news-heading-08_bNlM- wcl-headline_buFBe",
+      "categories": ["Sport", "News"]
+    },
+    {
+      "url": "https://eurosport.tvn24.pl/latest-news.shtml",
+      "tag": "h3",
+      "class": "card-hover-underline font-bold -md:caps-s5-fx md-lg:caps-s4-fx lg:caps-s4-fx -md:lines-3 md-lg:lines-3 lg:lines-3 text-onLight-02 -md:h-[51px] md-lg:h-[57px] lg:h-[57px]",
+      "categories": ["Sport", "News"]
+    },
+    {
+      "url": "https://businessinsider.com.pl/lifestyle/podroze",
+      "tag": "h2",
+      "class": "item_title",
+      "categories": ["Trip"]
+    },
+    {
+      "url": "https://www.national-geographic.pl/traveler/kierunki/",
+      "tag": "h2",
+      "class": "heading-4",
+      "categories": ["Trip"]
+    },
+    {
+      "url": "https://www.rp.pl/wydarzenia/kraj/polityka",
+      "tag": "h2",
+      "class": "t--60",
+      "categories": ["Politics"]
+    },
+    {
+      "url": "https://wpolityce.pl/polityka",
+      "tag": "span",
+      "class": "long-title",
+      "categories": ["Politics"]
+    },
+    {
+      "url": "https://www.bankier.pl/tag/zdrowie",
+      "tag": "div",
+      "class": "m-listing-article-list__title",
+      "categories": ["Health"]
+    },
+    {
+      "url": "https://www.komputerswiat.pl/gamezilla/aktualnosci",
+      "tag": "h3",
+      "class": "ods-c-card__title",
+      "categories": ["Games"]
+    },
+    {
+      "url": "https://www.gram.pl/news",
+      "tag": "div",
+      "class": "title",
+      "categories": ["Games", "News"]
+    },
+    {
+      "url": "https://www.miastogier.pl/news.html",
+      "tag": "h3",
+      "class": "title",
+      "categories": ["Games", "News"]
     }
   ]
 }
