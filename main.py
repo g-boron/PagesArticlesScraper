@@ -11,13 +11,21 @@ import matplotlib.pyplot as plt
 
 
 def read_input_json(name):
-  with open(name, "r") as f:
-    input_data = json.load(f)
-    return input_data["pages"]
+  try:
+    with open(name, "r") as f:
+      input_data = json.load(f)
+      return input_data["pages"]
+  except FileNotFoundError:
+    print("File does not exist!")
+    return []
 
 
 def get_page_titles(page_url, html_tag, html_class):
-  page = requests.get(page_url)
+  try:
+    page = requests.get(page_url)
+  except requests.exceptions.Timeout:
+    print("Timeout occurred!")
+    return []
   soup = BeautifulSoup(page.content, "html.parser")
   elements = soup.find_all(html_tag, {"class": html_class})
   return [
