@@ -2,6 +2,8 @@
 import json
 from collections import Counter
 from itertools import islice
+from time import perf_counter
+from concurrent.futures import ThreadPoolExecutor
 
 import requests
 from bs4 import BeautifulSoup
@@ -95,12 +97,10 @@ def display_charts(final_counts):
     plt.show()
 
 
-if __name__ == "__main__":
-  data = read_input_json("input.json")
-  words_count = {}
-  titles_count = 0
-  print(f"Pages to scrape: {len(data)}")
-  for page_data in data:
+def process_pages(pages_data):
+  words_data = {}
+  titles_amount = 0
+  for page_data in pages_data:
     url = page_data["url"]
     categories = page_data["categories"]
     print("First three titles for every URL.")
@@ -110,14 +110,45 @@ if __name__ == "__main__":
     titles = get_page_titles(url, html_tag, html_class)
     print(f"Found {len(titles)} titles.")
     print(titles[:3])
-    titles_count += len(titles)
+    titles_amount += len(titles)
     words_amount = count_words(titles)
     print("============")
     words_amount_with_categories = {
         category: words_amount
         for category in categories
     }
-    words_count = join_words_amount(words_count, words_amount_with_categories)
+    words_data = join_words_amount(words_data, words_amount_with_categories)
+  return words_data, titles_amount
+
+
+def split_pages_data(input_data):
+  splitter = len(input_data) // 4
+  part1 = data[:splitter]
+  part2 = data[splitter:2 * splitter]
+  part3 = data[2 * splitter:3 * splitter]
+  part4 = data[3 * splitter:]
+  return [part1, part2, part3, part4]
+
+
+if __name__ == "__main__":
+  data = read_input_json("input.json")
+  print(f"Pages to scrape: {len(data)}")
+  prepared_data = split_pages_data(data)
+  start = perf_counter()
+  with ThreadPoolExecutor(max_workers=4) as executor:
+    futures = [
+      executor.submit(process_pages, prepared_data[0]),
+      executor.submit(process_pages, prepared_data[1]),
+      executor.submit(process_pages, prepared_data[2]),
+      executor.submit(process_pages, prepared_data[3])
+    ]
+    words_count = {}
+    titles_count = 0
+    for future in futures:
+      words_count_future, titles_count_future = future.result()
+      words_count = join_words_amount(words_count, words_count_future)
+      titles_count += titles_count_future
+  print(f"Pages processing took {round(perf_counter() - start, 2)} seconds.")
   print(f"Found total {titles_count} titles.")
   words_counts = sort_dictionary(words_count)
   display_charts(words_counts)
