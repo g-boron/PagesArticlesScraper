@@ -30,3 +30,7 @@ Do following steps:
 2. Install required libraries: `pip install -r requirements.txt`
 3. Prepare data or use predefined in `input/input.json`
 4. Run the application: `python main.py`
+
+## License 📑
+
+Open source [MIT](https://opensource.org/license/mit) license.
